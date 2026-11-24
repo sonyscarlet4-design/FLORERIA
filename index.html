@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#b39ddb">
+  <title>Decora nature | Florería y Catálogo Botánico</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div id="splashScreen" class="splash-screen" aria-hidden="false">
+    <div class="splash-stars" aria-hidden="true">
+      <span class="spark s1">✦</span>
+      <span class="spark s2">✧</span>
+      <span class="spark s3">✦</span>
+      <span class="spark s4">✧</span>
+      <span class="rocket-badge">🌷</span>
+    </div>
+    <div class="splash-card">
+      <div class="splash-logo-ring">
+        <div class="splash-logo-inner">
+          <strong>Decora</strong>
+          <span>nature</span>
+          <small>Flores &amp; Detalles</small>
+        </div>
+      </div>
+      <div class="splash-progress-track" aria-hidden="true">
+        <div class="splash-progress-fill"></div>
+      </div>
+      <p class="splash-loading-text">Cargando el mejor aroma...</p>
+    </div>
+    <div class="splash-planets" aria-hidden="true">
+      <div class="planet p-left"></div>
+      <div class="planet p-right"></div>
+    </div>
+  </div>
+
+  <section id="welcomeScreen" class="welcome-screen" aria-label="Bienvenida a Decora nature" hidden>
+    <div class="welcome-card">
+      <span class="banner-tag">FLORES Y DETALLES · DECORA NATURE</span>
+      <h1 class="welcome-title">Tu próximo detalle <span>empieza aquí.</span></h1>
+      <p class="welcome-copy">
+        Ramos de girasoles, margaritas, rosas y tulipanes en tonos pastel. Elige algo especial, arma tu pedido y envíalo por WhatsApp.
+      </p>
+      <div class="hero-buttons">
+        <button type="button" id="btnExplorarCatalogo" class="btn btn-cta">Explorar el catálogo →</button>
+        <button type="button" id="btnSaltarBienvenida" class="btn btn-secondary">Acceso administrador</button>
+      </div>
+    </div>
+  </section>
+
+  <div id="appContainer" class="app-shell" hidden>
+    <header class="topbar">
+      <div class="topbar-left">
+        <button type="button" id="btnVolverInicio" class="brand-circle-btn" aria-label="Ir al inicio">
+          <span class="brand-circle-badge">DN</span>
+        </button>
+        <div class="brand-text-wrap">
+          <span id="headerTituloVista" class="header-title">El mejor detalle en cada pétalo</span>
+          <small class="header-subtitle">DECORA NATURE</small>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button type="button" id="btnInstalarPWA" class="btn-install-pill" hidden>↓ Instalar</button>
+        <button type="button" id="btnIrCotizacionTop" class="round-icon-btn" aria-label="Ir a carrito y pedido">
+          <span>🛒</span>
+          <span id="contadorCarrito" class="cart-dot-count">0</span>
+        </button>
+        <button type="button" id="btnTema" class="theme-pill-btn" aria-label="Cambiar tema claro u oscuro" aria-pressed="true">
+          <span>☀️</span>
+          <span>🌙</span>
+        </button>
+        <button type="button" id="btnAbrirMenu" class="round-icon-btn" aria-label="Abrir menú lateral" aria-expanded="false">☰</button>
+      </div>
+    </header>
+
+    <div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+    <aside id="drawerMenu" class="drawer-menu" aria-label="Menú de navegación" hidden>
+      <div class="drawer-header">
+        <div class="topbar-left">
+          <span class="brand-circle-badge">DN</span>
+          <div>
+            <strong>DECORA NATURE</strong>
+            <div class="drawer-sub">Flores &amp; Detalles</div>
+          </div>
+        </div>
+        <button type="button" id="btnCerrarMenu" class="round-icon-btn" aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <div class="drawer-section-label">CATEGORÍAS DEL CATÁLOGO</div>
+      <div id="drawerCategorias" class="drawer-list"></div>
+
+      <div class="drawer-section-label">NAVEGACIÓN</div>
+      <div class="drawer-list">
+        <button type="button" class="drawer-item" data-vista="inicio">🏠 <span>Inicio</span> ›</button>
+        <button type="button" class="drawer-item" data-vista="catalogo">💐 <span>Catálogo</span> ›</button>
+        <button type="button" class="drawer-item" data-vista="envios">🚚 <span>Envíos</span> ›</button>
+        <button type="button" class="drawer-item" data-vista="promociones">🏷️ <span>Promociones</span> ›</button>
+        <button type="button" class="drawer-item" data-vista="cotizacion">🛍️ <span>Carrito y Pedido</span> ›</button>
+        <button type="button" class="drawer-item" data-vista="contacto">💌 <span>Contacto</span> ›</button>
+      </div>
+
+      <div class="drawer-footer-actions">
+        <button type="button" id="btnAbrirAdminDrawer" class="btn-drawer-outline">Acceso administrador</button>
+        <button type="button" id="btnVerBienvenida" class="btn-drawer-outline">Pantalla de Bienvenida</button>
+        <button type="button" id="btnReproducirSplash" class="btn-drawer-ghost">Repetir Splash Floral</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section id="vistaInicio" class="view-section active" aria-label="Inicio">
+        <div class="hero-card">
+          <div class="hero-accent-bar"></div>
+          <div class="hero-card-body">
+            <span class="hero-pill-tag">🌸 FLORES &amp; DETALLES · DECORA NATURE</span>
+            <h1 class="hero-title">Tu próximo detalle <span>empieza aquí.</span></h1>
+            <p class="hero-copy">
+              Ramos frescos, arreglos pastel y detalles para regalar. Elige algo lindo y arma tu pedido.
+            </p>
+            <div class="hero-buttons">
+              <button type="button" id="btnBannerExplorar" class="btn btn-cta">Explorar el catálogo →</button>
+              <button type="button" id="btnBannerPromos" class="btn btn-secondary">Ver promociones</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-kicker">EXPLORA POR CATEGORÍA</div>
+        <h2 class="section-heading">Elige qué regalar hoy</h2>
+        <div id="gridCategoriasInicio" class="category-grid"></div>
+      </section>
+
+      <section id="vistaCatalogo" class="view-section" aria-label="Catálogo">
+        <div class="catalog-top-bar">
+          <button type="button" id="btnAtrasCatalogo" class="round-icon-btn" aria-label="Volver">←</button>
+          <div class="catalog-heading-mini">
+            <strong>Catálogo</strong>
+            <small>DECORA NATURE</small>
+          </div>
+          <span id="contadorProductos" class="count-pill">32 productos</span>
+        </div>
+
+        <div id="filtrosCategoria" class="chips-scroll"></div>
+
+        <div class="search-box-wrap">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input type="search" id="inputBuscar" class="input-field search-input" placeholder="Buscar flores, ramos o detalles...">
+        </div>
+
+        <div id="subfiltrosDisponibilidad" class="chips-scroll">
+          <button type="button" class="chip active" data-disp="todos">Todos</button>
+          <button type="button" class="chip" data-disp="stock">Disponibles</button>
+          <button type="button" class="chip" data-disp="agotado">Agotados</button>
+        </div>
+
+        <p id="estadoCatalogo" class="status-text" role="status"></p>
+        <div id="gridProductos" class="products-grid"></div>
+      </section>
+
+      <section id="vistaEnvios" class="view-section" aria-label="Envíos y Entregas">
+        <div class="hero-card compact-card">
+          <span class="hero-pill-tag">🌸 DECORA NATURE A TU PUERTA</span>
+          <h2 class="hero-title" style="font-size:1.55rem;">Pide como prefieras</h2>
+          <p class="hero-copy" style="margin-bottom:0;">Coordina envío directo por WhatsApp o recojo en tienda en pocos minutos.</p>
+        </div>
+
+        <div class="delivery-card">
+          <div class="delivery-header-row">
+            <span class="delivery-badge">WA</span>
+            <div>
+              <strong>WhatsApp Directo · 68067801</strong>
+              <div class="product-spec">Atención rápida y dedicatoria personalizada</div>
+            </div>
+          </div>
+          <p class="product-spec">Envía tu cotización lista con código, cantidad, total en Bs y punto de entrega.</p>
+          <div class="hero-buttons">
+            <button type="button" id="btnIrPedidoDesdeEnvios" class="btn btn-cta">Ir a mi pedido →</button>
+            <button type="button" id="btnIrCatalogoDesdeEnvios" class="btn btn-secondary">Ver catálogo →</button>
+          </div>
+        </div>
+
+        <div class="delivery-card">
+          <div class="delivery-header-row">
+            <span class="delivery-badge teal">DN</span>
+            <div>
+              <strong>Recojo en Decora nature</strong>
+              <div class="product-spec">Preparación cuidada en tonos pastel</div>
+            </div>
+          </div>
+          <p class="product-spec" id="textoDireccionEnvio"></p>
+          <div class="hero-buttons">
+            <button type="button" id="btnIrContactoDesdeEnvios" class="btn btn-cta">Ver ubicación y contacto →</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="vistaPromociones" class="view-section" aria-label="Promociones">
+        <div class="promo-highlight-banner">
+          <div>
+            <span class="promo-yellow-tag">PROMO PASTEL · -15%</span>
+            <h2 class="promo-banner-title">Ramo Tulipanes &amp; Rosas Mix</h2>
+            <div class="promo-prices">
+              <del>Bs 236,60</del>
+              <strong>Bs 201,10</strong>
+            </div>
+          </div>
+          <img src="./tul1.jpg" alt="Promoción Tulipanes y Rosas" class="promo-banner-thumb">
+        </div>
+
+        <div id="gridPromociones" class="products-grid" style="margin-top:1rem;"></div>
+      </section>
+
+      <section id="vistaCotizacion" class="view-section" aria-label="Cotización y Pedido">
+        <div class="quote-layout">
+          <div class="form-card">
+            <div class="card-title-row">
+              <h3>Tu cotización</h3>
+              <button type="button" id="btnVaciarCarrito" class="btn btn-outline-red btn-sm">Vaciar</button>
+            </div>
+            <div id="listaCotizacion" class="quote-items"></div>
+            <div class="quote-summary-box">
+              <div class="quote-summary-line">
+                <span>Unidades seleccionadas</span>
+                <strong id="unidadesCotizacion">0</strong>
+              </div>
+              <div class="quote-total-row">
+                <span>Total estimado</span>
+                <strong id="totalCotizacion">Bs 0,00</strong>
+              </div>
+            </div>
+          </div>
+
+          <form id="formPedido" class="form-card" novalidate>
+            <h3>Confirmar pedido por WhatsApp</h3>
+            <p class="product-spec" style="margin-bottom:0.9rem;">
+              Completa tus datos y confirma dentro de 8 segundos para registrar el pedido y abrir WhatsApp.
+            </p>
+            <div class="field-group">
+              <label for="clienteNombre">Nombre del cliente</label>
+              <input type="text" id="clienteNombre" class="input-field" placeholder="Solo letras y espacios" autocomplete="name">
+              <span id="errorNombre" class="field-error" role="alert"></span>
+            </div>
+            <div class="field-group">
+              <label for="clienteContacto">Teléfono o WhatsApp </label>
+              <input type="text" id="clienteContacto" class="input-field" maxlength="8" inputmode="numeric" placeholder="Ej. 68067801">
+              <span id="errorContacto" class="field-error" role="alert"></span>
+            </div>
+            <div class="action-row">
+              <button type="submit" class="btn btn-cta">realizar compra</button>
+              <button type="button" id="btnConfirmarCuentaRegresiva" class="btn btn-confirm" hidden>Confirmar pedido (8s)</button>
+              <button type="button" id="btnCancelarCuentaRegresiva" class="btn btn-outline-red" hidden>Cancelar</button>
+            </div>
+            <p id="estadoPedido" class="status-text" role="status"></p>
+          </form>
+        </div>
+
+        <div class="history-card" style="margin-top:1rem;">
+          <h3>Historial de pedidos</h3>
+          <div id="listaHistorial" class="quote-items"></div>
+        </div>
+      </section>
+
+      <section id="vistaContacto" class="view-section" aria-label="Contacto">
+        <div class="contact-top-banner">
+          <span class="contact-mail-icon" aria-hidden="true">✉️</span>
+          <div class="hero-kicker-light">ESTAMOS PARA AYUDARTE</div>
+          <h2 class="contact-banner-title">Hablemos de algo bonito.</h2>
+          <p class="contact-banner-copy">Déjanos tu mensaje y cuéntanos cómo podemos ayudarte con tu ramo o regalo.</p>
+          <ul class="contact-check-list">
+            <li>✓ Consultas sobre flores y arreglos</li>
+            <li>✓ Dudas sobre tu pedido o entrega</li>
+            <li>✓ Dedicatorias y sugerencias</li>
+          </ul>
+        </div>
+
+        <div class="contact-grid" style="margin-top:1rem;">
+          <form id="formContacto" class="form-card" novalidate>
+            <div class="section-kicker">FORMULARIO</div>
+            <h3>Envíanos un mensaje</h3>
+            <div class="field-group">
+              <label for="contactoNombre">Tu nombre</label>
+              <input type="text" id="contactoNombre" class="input-field" placeholder="¿Cómo te llamas?">
+              <span id="errorContactoNombre" class="field-error" role="alert"></span>
+            </div>
+            <div class="field-group">
+              <label for="contactoCorreo">Correo electrónico o teléfono</label>
+              <input type="text" id="contactoCorreo" class="input-field" placeholder="tu@correo.com o 68067801">
+              <span id="errorContactoCorreo" class="field-error" role="alert"></span>
+            </div>
+            <div class="field-group">
+              <label for="contactoMensaje">¿En qué podemos ayudarte?</label>
+              <textarea id="contactoMensaje" class="input-field" rows="3" placeholder="Escribe tu consulta o dedicatoria..."></textarea>
+              <span id="errorContactoMensaje" class="field-error" role="alert"></span>
+            </div>
+            <button type="submit" class="btn btn-cta">Enviar mensaje</button>
+            <p id="estadoContacto" class="status-text" role="status"></p>
+          </form>
+
+          <div class="contact-side-stack">
+            <section class="audit-card">
+              <h3>Verificación rápida de interfaz</h3>
+              <div class="hero-buttons">
+                <button type="button" id="btnSmokeTest" class="btn btn-secondary btn-sm">Smoke Test DOM</button>
+                <button type="button" id="btnAuditarA11Y" class="btn btn-secondary btn-sm">Auditoría A11Y</button>
+              </div>
+              <p id="resultadoAuditoria" class="status-text" role="status"></p>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navegación inferior">
+      <button type="button" class="bottom-nav-btn active" data-vista="inicio">
+        <span aria-hidden="true">🏠</span>
+        <span>Inicio</span>
+      </button>
+      <button type="button" class="bottom-nav-btn" data-vista="catalogo">
+        <span aria-hidden="true">💐</span>
+        <span>Catálogo</span>
+      </button>
+      <button type="button" class="bottom-nav-btn" data-vista="envios">
+        <span aria-hidden="true">🚚</span>
+        <span>Envíos</span>
+      </button>
+      <button type="button" class="bottom-nav-btn" data-vista="promociones">
+        <span aria-hidden="true">🏷️</span>
+        <span>Promos</span>
+      </button>
+      <button type="button" class="bottom-nav-btn" data-vista="contacto">
+        <span aria-hidden="true">✉️</span>
+        <span>Contacto</span>
+      </button>
+    </nav>
+
+    <footer class="site-footer">
+      <div><strong>Decora nature</strong> · Florería y Detalles Botánicos</div>
+    </footer>
+  </div>
+
+  <dialog id="modalDetalle" class="detail-modal">
+    <img id="modalImagen" src="" alt="" class="modal-img">
+    <div id="modalCodigoCat" class="product-meta" style="margin-top:0.65rem;"></div>
+    <h3 id="modalTitulo" class="product-title" style="font-size:1.22rem; margin-top:0.35rem;"></h3>
+    <p id="modalEspecificacion" class="product-spec" style="margin-top:0.35rem;"></p>
+    <p id="modalPrecioStock" class="product-price" style="margin-top:0.65rem;"></p>
+    <div class="action-row" style="margin-top:1rem;">
+      <button type="button" id="btnModalAgregar" class="btn btn-cta">Agregar a cotización</button>
+      <button type="button" id="btnCerrarModal" class="btn btn-secondary">Cerrar</button>
+    </div>
+  </dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "Pétalos & Brisa — Florería y Catálogo",
+  "short_name": "Pétalos & Brisa",
+  "description": "Catálogo floral interactivo en modo local con pedidos por WhatsApp y panel administrador.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#110d1f",
+  "theme_color": "#b39ddb",
+  "icons": [
+    {
+      "src": "./rosas1.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "./tul1.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
